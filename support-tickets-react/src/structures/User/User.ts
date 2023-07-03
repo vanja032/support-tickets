@@ -2,7 +2,7 @@ interface Role{
     name?: string,
     description?: string,
     created?: string
-};
+}
 
 interface User{
     f_name?: string,
@@ -11,4 +11,4 @@ interface User{
     username?: string,
     role?: Role,
     token?: string
-};
+}

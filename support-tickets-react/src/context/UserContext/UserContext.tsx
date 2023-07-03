@@ -4,13 +4,25 @@ import {
   ReactNode,
   ReactPortal,
   createContext,
-  //   useState,
+  useState,
 } from "react";
 import "../../structures/User/User";
-// import axios from "axios";
+import axios from "axios";
+import { Hash } from "../../utils/hash";
 
-export const UserContext = createContext({} as User);
-// const defaultApiUrl = "";
+interface UserContextReturn {
+  user: User;
+  login: (username: string, passowrd: string) => Promise<boolean>;
+  signup: () => Promise<boolean>;
+}
+
+// APIs urls
+const defaultApiUrl = "";
+
+const loginApi = `${defaultApiUrl}/login`;
+const signupApi = `${defaultApiUrl}/signup`;
+
+export const UserContext = createContext({} as UserContextReturn);
 
 const UserProvider = (props: {
   children:
@@ -23,22 +35,33 @@ const UserProvider = (props: {
     | null
     | undefined;
 }) => {
-  //   const loginApi = `${defaultApiUrl}/login`;
-  //   const signupApi = `${defaultApiUrl}/signup`;
+  const [user, setUser] = useState({} as User);
 
-  //   const [user, setUser] = useState({} as User);
+  const Login = async (username: string, passowrd: string) => {
+    try {
+      const result = await axios.post(loginApi, {
+        username: username,
+        password_hash: Hash.sha256(passowrd),
+      });
+      setUser({ email: result.data.email });
+      return true;
+    } catch (error) {
+      setUser({} as User);
+      return false;
+    }
+  };
 
-  //   const Login = async () => {
-  //     try {
-  //       const result = await axios.post(loginApi, {});
-  //       setUser({ email: result.data.email });
-  //     } catch (error) {
-  //       setUser({} as User);
-  //     }
-  //   };
+  const Signup = async () => {
+    try {
+      await axios.post(signupApi, {});
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
 
   return (
-    <UserContext.Provider value={{} as User}>
+    <UserContext.Provider value={{ user: user, login: Login, signup: Signup }}>
       {props.children}
     </UserContext.Provider>
   );

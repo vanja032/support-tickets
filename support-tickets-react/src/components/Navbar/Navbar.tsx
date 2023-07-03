@@ -6,7 +6,7 @@ import { UserContext } from "../../context/UserContext/UserContext";
 import { useContext } from "react";
 
 const Navbar = () => {
-  const user = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-custom2 py-3 px-5">

@@ -50,3 +50,38 @@
 .border-custom1 {
     border: 0.15em solid #464646;
 }
+
+
+
+/*VALIDATION*/
+.valid-color {
+    color: #cfff76;
+}
+
+.invalid-color {
+    color: #ff3f3f;
+}
+
+.warning-color {
+    color: #ffae35;
+}
+
+.inactive-color {
+    color: #696969;
+}
+
+.valid-border {
+    border-color: #cfff76;
+}
+
+.invalid-border {
+    border-color: #ff3f3f;
+}
+
+.valid-bg {
+    background-color: #cfff76;
+}
+
+.invalid-bg {
+    background-color: #ff3f3f;
+}

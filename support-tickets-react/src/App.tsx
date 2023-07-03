@@ -8,7 +8,6 @@ import {
 
 // Style
 import "./assets/style/App.css";
-import "./assets/style/colors.css";
 
 // Pages
 import Home from "./pages/Home/Home";
@@ -19,6 +18,9 @@ import Tickets from "./pages/Tickets/Tickets";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import UserProvider from "./context/UserContext/UserContext";
+
+// Colors overwrite
+import "./assets/style/colors.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
