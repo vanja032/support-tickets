@@ -13,11 +13,18 @@ import { Hash } from "../../utils/hash";
 interface UserContextReturn {
   user: User;
   login: (username: string, passowrd: string) => Promise<boolean>;
-  signup: () => Promise<boolean>;
+  signup: (
+    f_name: string,
+    l_name: string,
+    email: string,
+    username: string,
+    passowrd: string
+  ) => Promise<boolean>;
 }
 
 // APIs urls
-const defaultApiUrl = "";
+const defaultApiUrl =
+  "https://2qjkwakdbj.execute-api.us-east-1.amazonaws.com/dev";
 
 const loginApi = `${defaultApiUrl}/login`;
 const signupApi = `${defaultApiUrl}/signup`;
@@ -40,8 +47,8 @@ const UserProvider = (props: {
   const Login = async (username: string, passowrd: string) => {
     try {
       const result = await axios.post(loginApi, {
-        username: username,
-        password_hash: Hash.sha256(passowrd),
+        username: username.trim(),
+        password_hash: Hash.sha256(passowrd.trim()),
       });
       setUser({ email: result.data.email });
       return true;
@@ -51,10 +58,29 @@ const UserProvider = (props: {
     }
   };
 
-  const Signup = async () => {
+  const Signup = async (
+    f_name: string,
+    l_name: string,
+    email: string,
+    username: string,
+    passowrd: string
+  ) => {
     try {
-      await axios.post(signupApi, {});
-      return true;
+      const data = {
+        f_name: f_name.trim(),
+        l_name: l_name.trim(),
+        email: email.trim(),
+        username: username.trim(),
+        password_hash: await Hash.algoHash(passowrd.trim()),
+      };
+
+      const result = await axios.post(signupApi, data);
+      console.log(result);
+      if (result.data.body.status) {
+        return true;
+      } else {
+        return false;
+      }
     } catch (error) {
       return false;
     }

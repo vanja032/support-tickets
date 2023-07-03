@@ -5,6 +5,9 @@
   "email": {
     "S": "test@email.com"
   },
+  "created": {
+    "S": "some date"
+  },
   "first_name": {
     "S": "Test"
   },

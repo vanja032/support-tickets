@@ -11,7 +11,13 @@ const algoHash = async (data: string) => {
     const dataHash = await sha256(data);
     const tHash = await sha256(t_value);
     const hash = await sha256(`${dataHash}${tHash}`);
-    return `${hash}${tHash}`;
+
+    const tHashBin = parseInt(tHash, 16).toString(2);
+    const hashBin = parseInt(hash, 16).toString(2);
+    
+    const sumHash = await sha256(`${tHashBin}${hashBin}`);
+
+    return `${hash}${tHash}${sumHash}`;
 };
 
 

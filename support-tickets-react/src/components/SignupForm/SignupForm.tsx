@@ -1,9 +1,12 @@
 import { useContext, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { BiLoaderAlt } from "react-icons/bi";
+import { NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext/UserContext";
 import SignupValidation from "../../functions/signup";
 
 const SignupForm = () => {
+  const navigate = useNavigate();
+
   const { signup } = useContext(UserContext);
   const [signupAction, setSignupAction] = useState(false);
 
@@ -24,6 +27,11 @@ const SignupForm = () => {
 
   const [rPassword, setRPassword] = useState("");
   const [validRPassword, setValidRPassword] = useState(false);
+
+  const [message, setMessage] = useState("");
+  const [validMessage, setValidMessage] = useState(false);
+
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className="row justify-content-center">
@@ -180,12 +188,31 @@ const SignupForm = () => {
                   }}
                 />
               </div>
-              <p className="color-custom3" id="message"></p>
+              {loading ? (
+                <div className="col-12 color-custom2 d-flex justify-content-center my-2">
+                  <BiLoaderAlt className="form-loader" />
+                </div>
+              ) : (
+                <p
+                  className={
+                    "color-custom3" +
+                    (signupAction
+                      ? validMessage
+                        ? " valid-color"
+                        : " invalid-color"
+                      : "")
+                  }
+                  id="message"
+                >
+                  {message}
+                </p>
+              )}
               <br />
               <button
                 className="btn btn-primary btn-block login mt-2"
                 onClick={async () => {
-                  const result = await SignupValidation(
+                  setLoading(true);
+                  let result = await SignupValidation(
                     fName,
                     lName,
                     email,
@@ -200,9 +227,29 @@ const SignupForm = () => {
                     setValidRPassword
                   );
                   if (result) {
-                    await signup();
+                    result = await signup(
+                      fName,
+                      lName,
+                      email,
+                      username,
+                      password
+                    );
+                    if (result) {
+                      setValidMessage(true);
+                      setMessage("Successfully created user account");
+                      setTimeout(() => {
+                        navigate("/login", { replace: true });
+                      }, 1500);
+                    } else {
+                      setValidMessage(false);
+                      setMessage("Error while registering a new user account");
+                    }
+                  } else {
+                    setValidMessage(false);
+                    setMessage("Some data fields are not valid");
                   }
                   setSignupAction(true);
+                  setLoading(false);
                 }}
               >
                 Signup
