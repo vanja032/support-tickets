@@ -1,0 +1,33 @@
+.ticket-body-input, .ticket-header-input{
+    background-color: #383838;
+    color: #ffae00;
+    border: 0.15em solid #ffae00;
+    resize: none;
+}
+
+.ticket-body-input::placeholder, .ticket-header-input::placeholder{
+    color: #8b8b8b;
+    font-weight: 550;
+}
+
+.ticket-body-input:focus, .ticket-body-input:active,
+.ticket-header-input:focus, .ticket-header-input:active{
+    background-color: #383838;
+    color: #ffae00;
+    border: 0.15em solid #ffae00;
+    resize: none;
+    box-shadow: 0 0 10px #ffae00;
+}
+
+.tags-body,
+.tags-body:focus, .tags-body:active{
+    box-shadow: 0 0 0 #36363600;
+}
+
+.ticket-transparent-input,
+.ticket-transparent-input:focus, .ticket-transparent-input:active{
+    background-color: #38383800;
+    border: 0.15em solid #ffae0000;
+    box-shadow: 0 0 0 #36363600;
+    color: #ffae00;
+}

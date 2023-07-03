@@ -1,0 +1,28 @@
+/*FOOTER*/
+.footer {
+    background-color: #3d3d3d;
+}
+
+.copyright {
+    color: #ffffff;
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+.copyright .cp-symbol {
+    color: #ffa600;
+}
+
+.social-icons {
+    color: #ffffff;
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+.social-icons a {
+    color: #ffffff;
+}
+
+.social-icons a:hover {
+    color: #ffa600;
+}

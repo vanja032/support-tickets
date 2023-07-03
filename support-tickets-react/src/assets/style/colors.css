@@ -1,0 +1,52 @@
+/*BACKGROUND COLORS*/
+.bg-custom1{
+    background-color: #2e2e2e;
+}
+
+.bg-custom2{
+    background-color: #494949;
+}
+
+.bg-custom3{
+    background-color: #585858;
+}
+
+.bg-custom4{
+    background-color: #3f3f3f;
+}
+
+.bg-custom5{
+    background-color: #363636;
+}
+
+/*COLORS*/
+.color-custom1{
+    color: #ffffff;
+}
+
+.color-custom2{
+    color: #ffae00;
+}
+
+.color-custom3{
+    color: #bbbbbb;
+}
+
+.color-custom4 {
+    color: #ff3f3f;
+}
+
+/*LINKS*/
+.link-custom1 {
+    color: #ffa600;
+    text-decoration: none;
+}
+
+.link-custom1:hover {
+    color: #7e7e7e;
+}
+
+/*BORDERS*/
+.border-custom1 {
+    border: 0.15em solid #464646;
+}
