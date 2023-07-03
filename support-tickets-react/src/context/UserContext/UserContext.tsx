@@ -46,12 +46,20 @@ const UserProvider = (props: {
 
   const Login = async (username: string, passowrd: string) => {
     try {
-      const result = await axios.post(loginApi, {
+      const data = {
         username: username.trim(),
-        password_hash: Hash.sha256(passowrd.trim()),
-      });
-      setUser({ email: result.data.email });
-      return true;
+        password_hash: await Hash.sha256(passowrd.trim()),
+      };
+
+      const result = await axios.post(loginApi, data);
+      console.log(result.data.body.user_data);
+      if (result.data.body.status) {
+        //setUser(result.data.body.user_data);
+        return true;
+      } else {
+        setUser({} as User);
+        return false;
+      }
     } catch (error) {
       setUser({} as User);
       return false;
@@ -75,7 +83,6 @@ const UserProvider = (props: {
       };
 
       const result = await axios.post(signupApi, data);
-      console.log(result);
       if (result.data.body.status) {
         return true;
       } else {

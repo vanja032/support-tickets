@@ -1,10 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/media/logo-white.png";
 import LoginValidation from "../../functions/login";
 import { useContext, useState } from "react";
+import { BiLoaderAlt } from "react-icons/bi";
 import { UserContext } from "../../context/UserContext/UserContext";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+
   const { login } = useContext(UserContext);
   const [loginAction, setLoginAction] = useState(false);
 
@@ -13,6 +16,11 @@ const LoginForm = () => {
 
   const [passowrd, setPassword] = useState("");
   const [validPassword, setValidPassword] = useState(false);
+
+  const [message, setMessage] = useState("");
+  const [validMessage, setValidMessage] = useState(false);
+
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className="row justify-content-center">
@@ -78,21 +86,54 @@ const LoginForm = () => {
                   }}
                 />
               </div>
-              <p id="message" className="color-custom3"></p>
+              {loading ? (
+                <div className="col-12 color-custom2 d-flex justify-content-center my-2">
+                  <BiLoaderAlt className="form-loader" />
+                </div>
+              ) : (
+                <p
+                  className={
+                    "color-custom3" +
+                    (loginAction
+                      ? validMessage
+                        ? " valid-color"
+                        : " invalid-color"
+                      : "")
+                  }
+                  id="message"
+                >
+                  {message}
+                </p>
+              )}
               <br />
               <button
                 className="btn btn-primary btn-block login mt-2"
                 onClick={async () => {
-                  const result = await LoginValidation(
+                  setLoading(true);
+                  let result = await LoginValidation(
                     username,
                     passowrd,
                     setValidUsername,
                     setValidPassword
                   );
                   if (result) {
-                    await login(username, passowrd);
+                    result = await login(username, passowrd);
+                    if (result) {
+                      setValidMessage(true);
+                      setMessage("Successfully logged into user account");
+                      setTimeout(() => {
+                        navigate("/home", { replace: true });
+                      }, 1500);
+                    } else {
+                      setValidMessage(false);
+                      setMessage("Error during user login");
+                    }
+                  } else {
+                    setValidMessage(false);
+                    setMessage("Some data fields are not valid");
                   }
                   setLoginAction(true);
+                  setLoading(false);
                 }}
               >
                 Login

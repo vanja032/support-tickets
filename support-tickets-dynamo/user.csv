@@ -1,2 +1,0 @@
-"username","email","created","first_name","last_name","password_hash","profile","role","tickets"
-"test","test@email.com","some date","Test","Test","test","test","{""name"":{""S"":""admin""},""description"":{""S"":""test""}}","[{""M"":{""created"":{""S"":""some date""},""response"":{""S"":""Ticket response""},""name"":{""S"":""ticket name""},""description"":{""S"":""ticket description""},""response_by"":{""S"":""user""},""open"":{""BOOL"":true},""status"":{""S"":""answered""},""tags"":{""SS"":[""#tag1"",""#tag2""]}}}]"

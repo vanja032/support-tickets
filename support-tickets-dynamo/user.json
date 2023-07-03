@@ -1,68 +1,36 @@
 {
   "username": {
-    "S": "test"
+    "S": "petar1234"
   },
   "email": {
-    "S": "test@email.com"
+    "S": "petar@email.com"
   },
   "created": {
-    "S": "some date"
+    "S": "2023-07-03T20:29:24.454Z"
   },
   "first_name": {
-    "S": "Test"
+    "S": "Petar"
   },
   "last_name": {
-    "S": "Test"
+    "S": "Petrovic"
   },
   "password_hash": {
-    "S": "test"
+    "S": "b69f2899e6d3e8b239475b22f181de8b62ddb6313d5cc04ce992b59faf8d8dbf3d66b2117c7aa67388b6c958821d0e2fc3feb4f1922f26932228bbed10817f0b"
   },
   "profile": {
-    "S": "test"
+    "S": ""
   },
   "role": {
     "M": {
       "description": {
-        "S": "test"
+        "S": "User support role"
       },
       "name": {
-        "S": "admin"
+        "S": "user"
       }
     }
   },
   "tickets": {
-    "L": [
-      {
-        "M": {
-          "created": {
-            "S": "some date"
-          },
-          "description": {
-            "S": "ticket description"
-          },
-          "name": {
-            "S": "ticket name"
-          },
-          "open": {
-            "BOOL": true
-          },
-          "response": {
-            "S": "Ticket response"
-          },
-          "response_by": {
-            "S": "user"
-          },
-          "status": {
-            "S": "answered"
-          },
-          "tags": {
-            "SS": [
-              "#tag1",
-              "#tag2"
-            ]
-          }
-        }
-      }
-    ]
+    "L": []
   }
 }

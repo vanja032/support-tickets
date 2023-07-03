@@ -1,0 +1,68 @@
+{
+  "username": {
+    "S": "test"
+  },
+  "email": {
+    "S": "test@email.com"
+  },
+  "created": {
+    "S": "some date"
+  },
+  "first_name": {
+    "S": "Test"
+  },
+  "last_name": {
+    "S": "Test"
+  },
+  "password_hash": {
+    "S": "test"
+  },
+  "profile": {
+    "S": "test"
+  },
+  "role": {
+    "M": {
+      "description": {
+        "S": "test"
+      },
+      "name": {
+        "S": "admin"
+      }
+    }
+  },
+  "tickets": {
+    "L": [
+      {
+        "M": {
+          "created": {
+            "S": "some date"
+          },
+          "description": {
+            "S": "ticket description"
+          },
+          "name": {
+            "S": "ticket name"
+          },
+          "open": {
+            "BOOL": true
+          },
+          "response": {
+            "S": "Ticket response"
+          },
+          "response_by": {
+            "S": "user"
+          },
+          "status": {
+            "S": "answered"
+          },
+          "tags": {
+            "SS": [
+              "#tag1",
+              "#tag2"
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

@@ -18,7 +18,7 @@ const handler = async(event) => {
         
         let result = await dynamo.query(params).promise();
         if(result.Items.length > 0){
-            throw new Error("Error while inserting data into database c");
+            throw new Error("Error while inserting data into database");
         }
         
         // Checking if the email already exists
@@ -33,7 +33,7 @@ const handler = async(event) => {
         
         result = await dynamo.query(params).promise();
         if(result.Items.length > 0){
-            throw new Error("Error while inserting data into database g");
+            throw new Error("Error while inserting data into database");
         }
         
         const password_hash = event.password_hash.toString().trim();
@@ -56,14 +56,14 @@ const handler = async(event) => {
             email: event.email.toString().trim(),
             first_name: event.f_name.toString().trim(),
             last_name: event.l_name.toString().trim(),
-            username: event.username.toString().trim(),
             password_hash: `${dataHash}${tHash}`,
             profile: (event.profile) ? event.profile.toString().trim() : "",
             role: {
                 description: "User support role",
                 name: "user"
             },
-            tickets: []
+            tickets: [],
+            created: (new Date()).toISOString()
         };
         
         params = {
@@ -75,7 +75,10 @@ const handler = async(event) => {
         
         const response = {
             statusCode: 200,
-            headers: {"Access-Control-Allow-Origin": "*"},
+            headers: {
+                "Access-Control-Allow-Origin": "*", 
+                "Content-Type": "application/json"
+            },
             body: {
                 success: {
                     message: "Successfully created user account"
@@ -85,14 +88,16 @@ const handler = async(event) => {
         };
         return response;
     }
-    catch(errorr){
+    catch(error){
         const response = {
             statusCode: 500,
-            headers: {"Access-Control-Allow-Origin": "*"},
+            headers: {
+                "Access-Control-Allow-Origin": "*", 
+                "Content-Type": "application/json"
+            },
             body: {
                 error: {
-                    message: "Internal server error",
-                    exc: errorr.toString()
+                    message: "Internal server error"
                 },
                 status: false
             }
@@ -102,3 +107,4 @@ const handler = async(event) => {
 };
 
 module.exports = {handler};
+
