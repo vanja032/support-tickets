@@ -65,6 +65,7 @@ const SignupForm = () => {
                     onChange={(event) => {
                       setFName(event.currentTarget.value);
                     }}
+                    value={fName}
                   />
                 </div>
                 <div className="col-sm-12 col-md-6 form-group">
@@ -89,6 +90,7 @@ const SignupForm = () => {
                     onChange={(event) => {
                       setLName(event.currentTarget.value);
                     }}
+                    value={lName}
                   />
                 </div>
               </div>
@@ -114,6 +116,7 @@ const SignupForm = () => {
                   onChange={(event) => {
                     setEmail(event.currentTarget.value);
                   }}
+                  value={email}
                 />
               </div>
               <div className="form-group">
@@ -138,6 +141,7 @@ const SignupForm = () => {
                   onChange={(event) => {
                     setUsername(event.currentTarget.value);
                   }}
+                  value={username}
                 />
               </div>
               <div className="form-group">
@@ -162,6 +166,7 @@ const SignupForm = () => {
                   onChange={(event) => {
                     setPassword(event.currentTarget.value);
                   }}
+                  value={password}
                 />
               </div>
               <div className="form-group">
@@ -186,6 +191,7 @@ const SignupForm = () => {
                   onChange={(event) => {
                     setRPassword(event.currentTarget.value);
                   }}
+                  value={rPassword}
                 />
               </div>
               {loading ? (
@@ -237,6 +243,15 @@ const SignupForm = () => {
                     if (result) {
                       setValidMessage(true);
                       setMessage("Successfully created user account");
+
+                      // Resets form fields
+                      setFName("");
+                      setLName("");
+                      setEmail("");
+                      setUsername("");
+                      setPassword("");
+                      setRPassword("");
+
                       setTimeout(() => {
                         navigate("/login", { replace: true });
                       }, 1500);

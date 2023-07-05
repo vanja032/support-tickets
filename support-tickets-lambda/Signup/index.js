@@ -6,6 +6,11 @@ const hashl = 64;
 
 const handler = async(event) => {
     try{
+        // CHeck if all parameters are set
+        if(!event.username || !event.email || !event.f_name || !event.l_name || !event.password_hash){
+            throw new Error("Internal server error");
+        }
+        
         // Checking if the username already exists
         let params = {
             TableName: "users",

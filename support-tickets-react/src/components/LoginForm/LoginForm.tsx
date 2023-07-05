@@ -60,6 +60,7 @@ const LoginForm = () => {
                   onChange={(event) => {
                     setUsername(event.currentTarget.value);
                   }}
+                  value={username}
                 />
               </div>
               <div className="form-group">
@@ -84,6 +85,7 @@ const LoginForm = () => {
                   onChange={(event) => {
                     setPassword(event.currentTarget.value);
                   }}
+                  value={passowrd}
                 />
               </div>
               {loading ? (
@@ -121,8 +123,13 @@ const LoginForm = () => {
                     if (result) {
                       setValidMessage(true);
                       setMessage("Successfully logged into user account");
+
+                      // Resets form fields
+                      setUsername("");
+                      setPassword("");
+
                       setTimeout(() => {
-                        navigate("/home", { replace: true });
+                        navigate("/", { replace: true });
                       }, 1500);
                     } else {
                       setValidMessage(false);

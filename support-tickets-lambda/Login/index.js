@@ -9,6 +9,15 @@ const hashl = 64;
 
 const handler = async(event) => {
     try{
+        // CHeck if all parameters are set
+        if(!event.username || !event.password_hash){
+            throw new Error("Internal server error");
+        }
+        
+        if(event.password_hash.toString().length != hashl){
+            throw new Error("Internal server error");
+        }
+        
         // Checking if the account with username exists
         let params = {
             TableName: "users",
@@ -35,7 +44,7 @@ const handler = async(event) => {
         }
         
         if(result.Items.length == 0){
-            throw new Error("Error during user logina");
+            throw new Error("Error during user login");
         }
         
         const password_hash = event.password_hash.toString().trim();
@@ -62,9 +71,24 @@ const handler = async(event) => {
             token: jwt.sign({username: result.Items[0].username}, key, { expiresIn: "24h" })
         };
         
+        // Set server side cookie for user authentication
+        const cookieOptions = {
+            httpOnly: true,
+            //secure: true, // using https
+            secure: false, // Not using HTTPS for localhost
+            domain: '127.0.0.1',
+            path: "/",
+            expires: new Date(Date.now() + 86400 * 1000)
+        };
+        
+        const cookie = `username=${user.username}; token=${user.token}; ${
+            Object.entries(cookieOptions).map(([key, value]) => `${key}=${value}`).join("; ")
+        }`;
+        
         const response = {
             statusCode: 200,
             headers: {
+                "Set-Cookie": cookie,
                 "Access-Control-Allow-Origin": "*", 
                 "Content-Type": "application/json"
             },
@@ -97,3 +121,4 @@ const handler = async(event) => {
 };
 
 module.exports = {handler};
+

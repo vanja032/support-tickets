@@ -31,6 +31,83 @@
     }
   },
   "tickets": {
-    "L": []
+    "L": [
+      {
+        "M": {
+          "created": {
+            "S": "2023-07-05T00:48:48.211Z"
+          },
+          "description": {
+            "S": "Ticket Some ticket created 2023-07-05T00:48:48.211Z by user petar1234"
+          },
+          "message": {
+            "S": "Ticket message"
+          },
+          "open": {
+            "BOOL": true
+          },
+          "response": {
+            "S": ""
+          },
+          "response_by": {
+            "S": ""
+          },
+          "status": {
+            "S": "pending"
+          },
+          "subject": {
+            "S": "Some ticket"
+          },
+          "tags": {
+            "L": [
+              {
+                "S": "#tag1"
+              },
+              {
+                "S": "#tag2"
+              },
+              {
+                "S": "#tag3"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "M": {
+          "created": {
+            "S": "2023-07-05T00:54:39.445Z"
+          },
+          "description": {
+            "S": "Ticket New ticket created 2023-07-05T00:54:39.445Z by user petar1234"
+          },
+          "message": {
+            "S": "Ticket request"
+          },
+          "open": {
+            "BOOL": true
+          },
+          "response": {
+            "S": ""
+          },
+          "response_by": {
+            "S": ""
+          },
+          "status": {
+            "S": "pending"
+          },
+          "subject": {
+            "S": "New ticket"
+          },
+          "tags": {
+            "L": [
+              {
+                "S": "#some tag"
+              }
+            ]
+          }
+        }
+      }
+    ]
   }
 }

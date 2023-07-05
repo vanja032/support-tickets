@@ -6,7 +6,7 @@ import { UserContext } from "../../context/UserContext/UserContext";
 import { useContext } from "react";
 
 const Navbar = () => {
-  const { user } = useContext(UserContext);
+  const { user, logout } = useContext(UserContext);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-custom2 py-3 px-5">
@@ -37,11 +37,15 @@ const Navbar = () => {
               Home
             </NavLink>
           </li>
-          <li className="nav-item px-2">
-            <NavLink className="nav-link" to="submit">
-              Submit a ticket
-            </NavLink>
-          </li>
+          {user.token ? (
+            <li className="nav-item px-2">
+              <NavLink className="nav-link" to="submit">
+                Submit a ticket
+              </NavLink>
+            </li>
+          ) : (
+            <></>
+          )}
           <li className="nav-item px-2">
             <NavLink className="nav-link" to="about">
               About
@@ -55,7 +59,7 @@ const Navbar = () => {
                 data-toggle="dropdown"
                 aria-expanded="false"
               >
-                <FaUserCircle />
+                {user.f_name + " "} <FaUserCircle />
               </div>
               <div className="dropdown-menu dropdown-menu-profile">
                 <NavLink className="dropdown-item" to="profile">
@@ -67,7 +71,9 @@ const Navbar = () => {
                 <NavLink className="dropdown-item" to="dashboard">
                   Dashboard
                 </NavLink>
-                <span className="dropdown-item">Logout</span>
+                <span className="dropdown-item" onClick={logout}>
+                  Logout
+                </span>
               </div>
             </li>
           ) : (

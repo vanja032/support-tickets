@@ -17,10 +17,11 @@ import RootLayout from "./layouts/RootLayout/RootLayout";
 import Tickets from "./pages/Tickets/Tickets";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
-import UserProvider from "./context/UserContext/UserContext";
+import { UserContext } from "./context/UserContext/UserContext";
 
 // Colors overwrite
 import "./assets/style/colors.css";
+import { useContext, useEffect } from "react";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,11 +38,21 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return (
-    <UserProvider>
-      <RouterProvider router={router} />
-    </UserProvider>
-  );
+  const { user, get_user } = useContext(UserContext);
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        await get_user();
+      } catch (error) {}
+    };
+
+    if (localStorage.getItem("token") && !user.username) {
+      getUser();
+    }
+  }, []);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;

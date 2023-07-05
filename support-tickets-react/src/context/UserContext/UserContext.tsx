@@ -20,6 +20,9 @@ interface UserContextReturn {
     username: string,
     passowrd: string
   ) => Promise<boolean>;
+  get_user: () => Promise<boolean>;
+  logout: () => boolean;
+  defaultApi: string;
 }
 
 // APIs urls
@@ -28,6 +31,7 @@ const defaultApiUrl =
 
 const loginApi = `${defaultApiUrl}/login`;
 const signupApi = `${defaultApiUrl}/signup`;
+const userApi = `${defaultApiUrl}/get_user`;
 
 export const UserContext = createContext({} as UserContextReturn);
 
@@ -52,16 +56,18 @@ const UserProvider = (props: {
       };
 
       const result = await axios.post(loginApi, data);
-      console.log(result.data.body.user_data);
       if (result.data.body.status) {
-        //setUser(result.data.body.user_data);
+        setUser(result.data.body.user_data);
+        localStorage.setItem("token", result.data.body.user_data.token);
         return true;
       } else {
         setUser({} as User);
+        localStorage.removeItem("token");
         return false;
       }
     } catch (error) {
       setUser({} as User);
+      localStorage.removeItem("token");
       return false;
     }
   };
@@ -93,8 +99,52 @@ const UserProvider = (props: {
     }
   };
 
+  const GetUser = async () => {
+    try {
+      const data = {
+        token: localStorage.getItem("token"),
+      };
+
+      const result = await axios.post(userApi, data, {
+        withCredentials: true, // Include cookie in the request
+      });
+      if (result.data.body.status) {
+        setUser(result.data.body.user_data);
+        localStorage.setItem("token", result.data.body.user_data.token);
+        return true;
+      } else {
+        setUser({} as User);
+        localStorage.removeItem("token");
+        return false;
+      }
+    } catch (error) {
+      setUser({} as User);
+      localStorage.removeItem("token");
+      return false;
+    }
+  };
+
+  const Logout = () => {
+    try {
+      setUser({} as User);
+      localStorage.removeItem("token");
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ user: user, login: Login, signup: Signup }}>
+    <UserContext.Provider
+      value={{
+        user: user,
+        login: Login,
+        signup: Signup,
+        get_user: GetUser,
+        logout: Logout,
+        defaultApi: defaultApiUrl,
+      }}
+    >
       {props.children}
     </UserContext.Provider>
   );

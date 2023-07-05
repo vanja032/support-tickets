@@ -31,3 +31,13 @@
     box-shadow: 0 0 0 #36363600;
     color: #ffae00;
 }
+
+.form-loader-ticket{
+    font-size: 3.5em;
+    animation: loading 1s linear infinite;
+}
+
+@keyframes loading{
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+}

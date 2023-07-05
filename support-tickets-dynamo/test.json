@@ -40,8 +40,8 @@
           "description": {
             "S": "ticket description"
           },
-          "name": {
-            "S": "ticket name"
+          "message": {
+            "S": "ticket text"
           },
           "open": {
             "BOOL": true
@@ -54,6 +54,9 @@
           },
           "status": {
             "S": "answered"
+          },
+          "subject": {
+            "S": "ticket subject"
           },
           "tags": {
             "SS": [

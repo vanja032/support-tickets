@@ -1,5 +1,6 @@
 interface Ticket{
-    name?: string,
+    subject?: string,
+    message?: string,
     description?: string,
     status?: string,
     response?: string,
