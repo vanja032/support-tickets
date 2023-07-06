@@ -1,0 +1,25 @@
+.profile_picture_container{
+    border: 0.25em solid #757575;
+}
+
+.profile_picture{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+
+.profile_info{
+    font-size: 1.6em;
+}
+
+.profile-loader{
+    font-size: 4.5em;
+    animation: loading 1s linear infinite;
+}
+
+@keyframes loading{
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+}

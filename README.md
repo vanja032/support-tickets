@@ -12,4 +12,5 @@ Support Tickets Platform is a simple platform for support tickets submission.
   - ***APIs***
 
 ### Security:
+  - ***Custom password hashing algo*** for user password security
   - ***JWT token*** authentication for APIs security

@@ -30,7 +30,9 @@ const UserTicket = (props: Props) => {
         </div>
         <div className="col-12 p-2 color-custom1 ticket-props">
           {<span className="color-custom2">Tags: </span>}{" "}
-          {props.ticket.tags ? props.ticket.tags : "No tags present"}
+          {props.ticket.tags && props.ticket.tags.length
+            ? props.ticket.tags
+            : "No tags present"}
         </div>
         {props.ticket.response ? (
           <div className="col-12 p-2 color-custom1 ticket-props">

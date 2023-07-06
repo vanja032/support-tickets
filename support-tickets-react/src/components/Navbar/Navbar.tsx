@@ -4,8 +4,10 @@ import "../../assets/style/Navbar/Navbar.css";
 import { FaUserCircle } from "react-icons/fa";
 import { UserContext } from "../../context/UserContext/UserContext";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const { user, logout } = useContext(UserContext);
 
   return (
@@ -80,7 +82,13 @@ const Navbar = () => {
                 <NavLink className="dropdown-item" to="dashboard">
                   Dashboard
                 </NavLink>
-                <span className="dropdown-item" onClick={logout}>
+                <span
+                  className="dropdown-item"
+                  onClick={() => {
+                    logout();
+                    navigate("/", { replace: true });
+                  }}
+                >
                   Logout
                 </span>
               </div>

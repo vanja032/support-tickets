@@ -8,6 +8,8 @@ import {
 
 import { useContext, useEffect } from "react";
 
+import { UserContext } from "./context/UserContext/UserContext";
+
 // Style
 import "./assets/style/App.css";
 
@@ -19,8 +21,9 @@ import RootLayout from "./layouts/RootLayout/RootLayout";
 import Tickets from "./pages/Tickets/Tickets";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
-import { UserContext } from "./context/UserContext/UserContext";
 import UserTickets from "./pages/UserTickets/UserTickets";
+import Profile from "./pages/Profile/Profile";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 // Colors overwrite
 import "./assets/style/colors.css";
@@ -36,6 +39,8 @@ const router = createBrowserRouter(
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />
       <Route path="user_tickets" element={<UserTickets />} />
+      <Route path="profile" element={<Profile />} />
+      <Route path="dashboard" element={<Dashboard />} />
     </Route>
   )
 );
@@ -53,7 +58,7 @@ function App() {
     if (localStorage.getItem("token") && !user.username) {
       getUser();
     }
-  }, []);
+  }, [get_user]);
 
   return <RouterProvider router={router} />;
 }
