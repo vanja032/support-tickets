@@ -78,6 +78,10 @@
     border-color: #ff3f3f;
 }
 
+.warning-border {
+    border-color: #ffae35;
+}
+
 .valid-bg {
     background-color: #cfff76;
 }

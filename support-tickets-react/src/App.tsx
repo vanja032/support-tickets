@@ -6,6 +6,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import { useContext, useEffect } from "react";
+
 // Style
 import "./assets/style/App.css";
 
@@ -18,10 +20,10 @@ import Tickets from "./pages/Tickets/Tickets";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import { UserContext } from "./context/UserContext/UserContext";
+import UserTickets from "./pages/UserTickets/UserTickets";
 
 // Colors overwrite
 import "./assets/style/colors.css";
-import { useContext, useEffect } from "react";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +35,7 @@ const router = createBrowserRouter(
       <Route path="tickets" element={<Tickets />} />
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />
+      <Route path="user_tickets" element={<UserTickets />} />
     </Route>
   )
 );

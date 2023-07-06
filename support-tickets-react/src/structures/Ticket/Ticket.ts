@@ -7,5 +7,10 @@ interface Ticket{
     response_by?: string,
     open?: boolean,
     created?: string,
-    tags?: string[]
+    tags?: string[],
+    username?: string,
+    f_name?: string,
+    l_name?: string,
+    email?: string,
+    user_ticket_id?: number;
 }

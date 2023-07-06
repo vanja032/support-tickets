@@ -1,0 +1,56 @@
+.ticket-header{
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.ticket-body{
+    font-size: 1.3em;
+}
+
+.ticket-props{
+    font-size: 1em;
+}
+
+.ticket-respond{
+    background-color: #d9ff00;
+    color: #5e5e5e;
+    border: 0.15em solid #d9ff00;
+    font-weight: 600;
+}
+
+.ticket-respond:hover{
+    background-color: #5e5e5e;
+    color: #d9ff00;
+    border: 0.15em solid #d9ff00;
+}
+
+.ticket-respond:active, .ticket-respond:focus{
+    background-color: #5e5e5e !important;
+    color: #fbff00;
+    border: 0.15em solid #d9ff00 !important;
+    box-shadow: 0 0 15px #818181 !important;
+}
+
+.ticket-response{
+    background-color: #2e2e2e;
+    color: #ffae00;
+    border: 0.15em solid #ffae00;
+    resize: none;
+}
+
+.ticket-response::placeholder{
+    color: #8b8b8b;
+    font-weight: 550;
+}
+
+.ticket-response:focus, .ticket-response:active{
+    background-color: #353535;
+    color: #ffae00;
+    border: 0.15em solid #ffae00;
+    resize: none;
+    box-shadow: 0 0 10px #ffae00;
+}
+
+.ticket-border{
+    border: 0.2em solid #2e2e2e;
+}

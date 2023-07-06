@@ -1,0 +1,36 @@
+{
+  "username": {
+    "S": "marko123"
+  },
+  "email": {
+    "S": "marko@email.com"
+  },
+  "created": {
+    "S": "2023-07-05T21:01:12.919Z"
+  },
+  "first_name": {
+    "S": "Marko"
+  },
+  "last_name": {
+    "S": "Markovic"
+  },
+  "password_hash": {
+    "S": "0a8384d906ab2707b1b4aace93618dc48d9624f11023b12dc408ec2c0b27944ac672d5c22b5728f757b8b4afcc563416d08e49a0a306d9413010cd74e00768a8"
+  },
+  "profile": {
+    "S": ""
+  },
+  "role": {
+    "M": {
+      "description": {
+        "S": "Admin support role"
+      },
+      "name": {
+        "S": "admin"
+      }
+    }
+  },
+  "tickets": {
+    "L": []
+  }
+}

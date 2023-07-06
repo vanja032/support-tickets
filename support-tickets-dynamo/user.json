@@ -88,13 +88,13 @@
             "BOOL": true
           },
           "response": {
-            "S": ""
+            "S": "Response"
           },
           "response_by": {
-            "S": ""
+            "S": "marko123"
           },
           "status": {
-            "S": "pending"
+            "S": "closed"
           },
           "subject": {
             "S": "New ticket"

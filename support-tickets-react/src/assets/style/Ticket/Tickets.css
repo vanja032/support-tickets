@@ -46,3 +46,13 @@
     resize: none;
     box-shadow: 0 0 10px #ffae00;
 }
+
+.form-loader-tickets{
+    font-size: 4.5em;
+    animation: loading 1s linear infinite;
+}
+
+@keyframes loading{
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+}

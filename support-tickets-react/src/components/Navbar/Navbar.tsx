@@ -46,6 +46,15 @@ const Navbar = () => {
           ) : (
             <></>
           )}
+          {user.role?.name == "admin" ? (
+            <li className="nav-item px-2">
+              <NavLink className="nav-link" to="tickets">
+                Tickets
+              </NavLink>
+            </li>
+          ) : (
+            <></>
+          )}
           <li className="nav-item px-2">
             <NavLink className="nav-link" to="about">
               About
