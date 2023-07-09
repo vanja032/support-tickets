@@ -25,9 +25,13 @@ interface UserContextReturn {
   defaultApi: string;
 }
 
+const build = true;
+const development = "dev";
+const production = "prod";
 // APIs urls
-const defaultApiUrl =
-  "https://2qjkwakdbj.execute-api.us-east-1.amazonaws.com/dev";
+const defaultApiUrl = `https://2qjkwakdbj.execute-api.us-east-1.amazonaws.com/${
+  build ? production : development
+}`;
 
 const loginApi = `${defaultApiUrl}/login`;
 const signupApi = `${defaultApiUrl}/signup`;
@@ -105,9 +109,12 @@ const UserProvider = (props: {
         token: localStorage.getItem("token"),
       };
 
-      const result = await axios.post(userApi, data, {
+      const result = await axios.post(
+        userApi,
+        data /*, {
         withCredentials: true, // Include cookie in the request
-      });
+      }*/
+      );
       if (result.data.body.status) {
         setUser(result.data.body.user_data);
         localStorage.setItem("token", result.data.body.user_data.token);

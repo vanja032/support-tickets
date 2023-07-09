@@ -8,6 +8,7 @@ Support Tickets Platform is a simple platform for support tickets submission.
   - ***AWS API Gateway***
   - ***AWS DynamoDB***
   - ***AWS S3***
+  - ***AWS CloudFront*** for routing ***React pages***
   - ***ReactJs***
   - ***APIs***
 
